@@ -174,6 +174,9 @@ int arvid_client_get_line_pos_mod(void);
 /* set virtual vsync line. use -1 to disable */
 int arvid_client_set_virtual_vsync(int vsyncLine);
 
+/* set interlacing mode for double-strike */
+int arvid_client_set_interlacing(short enabled);
+
 /* sends an update file to the server */
 int arvid_client_update_server(unsigned char* updateData, int updateSize);
 

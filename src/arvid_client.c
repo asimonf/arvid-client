@@ -65,6 +65,7 @@ IN THE PRODUCT.
 #define CMD_GET_LINE_MOD 32
 #define CMD_SET_LINE_MOD 33
 #define CMD_SET_VIRT_VSYNC 34
+#define CMD_SET_INTERLACING 35
 
 #define CMD_UPDATE_START 40
 #define CMD_UPDATE_PACKET 41
@@ -713,6 +714,17 @@ int arvid_client_set_virtual_vsync(int vsyncLine) {
 	ac.payload[0] = CMD_SET_VIRT_VSYNC; //set virtual vsync line or disable
 	//payload[1] is reserverd (contains packet id)
 	ac.payload[2] = SET_SHORT(vsyncLine );
+	sendCommand_(2);
+	return 0;
+}
+
+int arvid_client_set_interlacing(short enabled) {
+	if (!ac.opened) {
+	    return -1;
+	}
+	ac.payload[0] = CMD_SET_INTERLACING; //set interlacing
+	//payload[1] is reserverd (contains packet id)
+	ac.payload[2] = SET_SHORT(enabled);
 	sendCommand_(2);
 	return 0;
 }
